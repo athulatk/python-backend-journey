@@ -1,4 +1,4 @@
-from utils.utils import show_menu,add_expense,view_expenses;
+from utils.utils import show_menu,add_expense,view_expenses,delete_expense;
 
 def main():
     while True:
@@ -8,6 +8,8 @@ def main():
             add_expense()
         elif choice == "2":
             view_expenses()
+        elif choice == "3":
+            delete_expense()
         else:
             break
 

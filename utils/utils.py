@@ -6,7 +6,8 @@ def show_menu():
     print("\n==== Expense Tracker ====")
     print("1. Add Expense")
     print("2. View Expenses")
-    print("3. Exit")
+    print("3. Delete Expense")
+    print("4. Exit")
 
 def add_expense():
     date = datetime.now().strftime("%Y-%m-%d")
@@ -31,3 +32,16 @@ def view_expenses():
                 print(f"{date}\t{category}\t{description}\t${amount}")
                 total += float(amount)
         print(f"\n💰 Total Spent: ${total}")
+
+def delete_expense():
+    expense=[]
+    delete_description=input("Enter the description to delete :")
+    with open('data/expenses.csv','r') as file:
+        reader=csv.reader(file)
+        for row in reader:
+            if(row[2] != delete_description):
+                expense.append(row)
+    with open('data/expenses.csv', 'w', newline='') as f:
+        writer = csv.writer(f)
+        writer.writerows(expense)
+    print(f"Expense Deleted : {delete_description}")
