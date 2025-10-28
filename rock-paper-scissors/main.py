@@ -34,12 +34,12 @@ def main():
     score = 0
 
     while True:
-        updated_score = play_round()
-        if updated_score is None:
+        round_score = play_round()
+        if round_score is None:
             print("Your score: ", score)
             print("Thanks for playing! Goodbye!")
             break
-        score += updated_score
+        score += round_score
 
 
 if __name__ == "__main__":
