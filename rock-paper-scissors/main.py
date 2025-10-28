@@ -9,7 +9,6 @@ def play_round():
 
     if user_choice not in choices:
         print("Invalid choice. Try again.")
-        return True
 
     computer_choice = random.choice(choices)
     print(f"Computer chose: {computer_choice}")
@@ -22,21 +21,25 @@ def play_round():
         (user_choice == "scissors" and computer_choice == "paper")
     ):
         print("You win!")
+        return 1
     else:
         print("Computer wins!")
 
-    return True
+    return 0
 
 
 def main():
     print("Welcome to Rock–Paper–Scissors!")
     print("Press 'q' anytime to quit.")
+    score = 0
 
     while True:
-        keep_playing = play_round(score)
-        if keep_playing is None:
+        updated_score = play_round()
+        if updated_score is None:
+            print("Your score: ", score)
             print("Thanks for playing! Goodbye!")
             break
+        score += updated_score
 
 
 if __name__ == "__main__":
