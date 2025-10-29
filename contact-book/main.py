@@ -31,6 +31,23 @@ def view_contacts(contacts):
     for name, info in contacts.items():
         print(f"👤 {name} | 📞 {info['phone']}")
 
+def search_contact(contacts):
+    name = input("Enter name to search: ").strip()
+    if name in contacts:
+        info = contacts[name]
+        print(f"\n👤 {name}\n📞 {info['phone']}\n")
+    else:
+        print("Contact not found.")
+
+def delete_contact(contacts):
+    name = input("Enter name to delete: ").strip()
+    if name in contacts:
+        del contacts[name]
+        save_contacts(contacts)
+        print(f"Contact '{name}' deleted.")
+    else:
+        print("Contact not found.")
+
 # --- Main Menu ---
 
 def main():
@@ -40,15 +57,21 @@ def main():
         print("\nContact Book Menu")
         print("1. Add Contact")
         print("2. View Contacts")
-        print("3. Exit")
+        print("3. Search Contact")
+        print("4. Delete Contact")
+        print("5. Exit")
 
-        choice = input("Enter your choice (1-3): ").strip()
+        choice = input("Enter your choice (1-5): ").strip()
 
         if choice == "1":
             add_contact(contacts)
         elif choice == "2":
             view_contacts(contacts)
         elif choice == "3":
+            search_contact(contacts)
+        elif choice == "4":
+            delete_contact(contacts)
+        elif choice == "5":
             break
         else:
             print("Invalid choice.")
